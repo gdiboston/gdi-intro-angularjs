@@ -13,11 +13,11 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/gdidefault.css" id="theme">
+		<link rel="stylesheet" href="css/theme/gdicool.css" id="theme">
 
 		<!-- For syntax highlighting -->
-		<!-- light editor<link rel="stylesheet" href="lib/css/light.css">-->
-		<!-- dark editor--><link rel="stylesheet" href="lib/css/dark.css">
+		<!-- light editor--><link rel="stylesheet" href="lib/css/light.css">
+		<!-- dark editor<link rel="stylesheet" href="lib/css/dark.css">-->
 
 		<!-- If use the PDF print sheet so students can print slides-->
 
@@ -107,19 +107,35 @@ Which of your web projects are you most proud of?
 				<section>
 					<h2>Also</h2>
 					<ul>
-						<li>Likes to own everything</li>
-						<li>You'll need to think about page refreshes, back button</li>
-						<li>Also consider performance</li>
-						<li>Use $scope.$watch and two-way data binding sparingly</li>
+						<li class="fragment">Likes to own everything</li>
+						<li class="fragment">You'll need to think about page refreshes, back button</li>
+						<li class="fragment">Also consider performance</li>
+						<li class="fragment">Use $scope.$watch and two-way data binding sparingly</li>
 					</ul>
+				</section>
+
+				<section>
+					<p>index.html</p>
+					<xml class="fragment">
+						<pre>
+<code>&lt;!DOCTYPE html>&lt;html ng-app>
+&lt;head>&lt;title>{{pageTitle}}&lt;/title>
+&lt;script src="./angular.min.js">
+&lt;script src="./app.js">&lt;/head>
+&lt;body>
+&lt;p>2 + 2 = {{2 + 2}}&lt;/p>
+&lt;/body>
+&lt;/html></code>
+						</pre>
+					</xml>
 				</section>
 
 				<section>
 					<h2>How Angular works</h2>
 					<ul>
-						<li>Each variable used in a view is added to a $watchers list</li>
-						<li>A digest loop checks for changes on page events</li>
-						<li>This is called "dirty checking"</li>
+						<li class="fragment">Each variable used in a view is added to a $watchers list</li>
+						<li class="fragment">A digest loop checks for changes on page events</li>
+						<li class="fragment">This is called "dirty checking"</li>
 					</ul>
 				</section>
 
@@ -151,10 +167,11 @@ Which of your web projects are you most proud of?
 					<xml class="fragment">
 					  <pre>
 <code>&lt;!DOCTYPE html>&lt;html ng-app>
-&lt;head>&lt;title>{{pageTitle}}&lt;/title>/head>
-&lt;body> &lt;h1>{{pageTitle}}&lt;/h1>
-	&lt;script src="./angular.min.js">
-	&lt;script src="./app.js">
+&lt;head>&lt;title>{{pageTitle}}&lt;/title>
+&lt;script src="./angular.min.js">
+&lt;script src="./app.js">&lt;/head>
+&lt;body>
+&lt;h1>{{pageTitle}}&lt;/h1>
 &lt;/body>
 &lt;/html></code>
             </pre>
@@ -268,7 +285,7 @@ function($scope) { $scope.pageTitle =
 					</ul>
 				</section>
 				<section>
-					<h2>'this' + 'controllerAs'</h2>
+					<h2>'this' and 'as'</h2>
 							<p>app.js</p>
 							<pre class="fragment">
 								<code contenteditable class ="javascript">require('angular');
@@ -365,6 +382,26 @@ angular.module([]).service("menuService", function() {
 					<p>Fork this codepen and use six directives you've learned:
 						<a href="http://codepen.io/arilaen/pen/oxPwQq">http://codepen.io/arilaen/pen/oxPwQq</a>
 					</p>
+					<p>Here's the list again (starred directives are required):</p>
+					<ul>
+						<li>ng-app</li>
+						<li class="fragment">ng-controller</li>
+						<li class="fragment">ng-if</li>
+						<li class="fragment">ng-show/ng-hide</li>
+						<li class="fragment">ng-click</li>
+						<li class="fragment">ng-model</li>
+						<li class="fragment">ng-change</li>
+						<li class="fragment">ng-repeat</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Next time...</h2>
+					<ul>
+						<li>Make your own directives!</li>
+						<li>Services</li>
+						<li>Forms</li>
+					</ul>
 				</section>
 
 				<section>
