@@ -230,7 +230,6 @@ Name: {{name}}</code>
 						<xml class="fragment">
 							<pre>
 								<code contenteditable>&lt;table>
-&lt;thead>...&lt;/thead>
 &lt;tbody>
 	&lt;tr ng-repeat="account in accounts track by $index">
 		&lt;td ng-bind="account.name">&lt;/td>
@@ -401,6 +400,299 @@ angular.module([]).service("menuService", function() {
 						<li>Make your own directives!</li>
 						<li>Services</li>
 						<li>Forms</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Intro to Angular Part 2</h2>
+					<p>Questions/thoughts before we begin?</p>
+				</section>
+
+				<section>
+					<h2>Day 2</h2>
+					<ul>
+						<li>Recap of Basics</li>
+						<li>Create your own directives!</li>
+						<li>Forms</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Recap: WHAT is Angular?</h2>
+					<ul>
+						<li class="fragment">Client-side Javascript Framework for Single Page Applications (SPAs)</li>
+						<li class="fragment">Allows you to extends HTML</li>
+						<li class="fragment">Data binding!</li>
+						<li class="fragment">Handles it's own dependency injection</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Recap: Model View Whatever</h2>
+					<img class="fragment" src="./css/images/MVW.png" />
+					<p class="fragment">http://www.techstrikers.com/AngularJS/angularjs-mvc-pattern.php</p>
+					<p class="fragment">https://plus.google.com/+AngularJS/posts/aZNVhj355G2</p>
+				</section>
+
+				<section>
+					  <h2>Recap: Directives</h2>
+						<p class="fragment">View components and logic</p>
+	           <pre class="fragment"><code contenteditable class ="javascript">angular.module([]).directive('myTooltip', myTooltipFn);</code></pre>
+						 <p class="fragment">Element style</p>
+						 <pre class="fragment"><code>&lt;my-tooltip>&lt;/my-tooltip></code></pre>
+						 <p class="fragment">Attribute style</p>
+						 <pre class="fragment"><code>&lt;div my-tooltip="options">&lt;/div></code><pre>
+				</section>
+
+				<section>
+					<h2>Recap: Built-in directives</h2>
+					<ul>
+						<li>ng-app</li>
+						<li class="fragment">ng-if</li>
+						<li class="fragment">ng-show/ng-hide</li>
+						<li class="fragment">ng-click</li>
+						<li class="fragment">ng-model</li>
+						<li class="fragment">ng-change</li>
+						<li class="fragment">ng-repeat</li>
+						<li class="fragment">ng-controller</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Let's go over yesterday's codepen!</h2>
+					<p><a href="http://codepen.io/arilaen/pen/oxPwQq">http://codepen.io/arilaen/pen/oxPwQq</a></p>
+				</section>
+
+				<section>
+					<h2>Recap: Controllers</h2>
+							<p class="fragment">app.js</p>
+							<pre class="fragment">
+								<code contenteditable class ="javascript">require('angular');
+	angular.module([]) .controller("menuController", ['$scope',
+	function($scope) { this.pageTitle =
+	"Angular Example Site"; }]);
+								</code>
+							</pre>
+							<p class="fragment">index.html</p>
+	<pre class="fragment">
+	<code>&lt;!DOCTYPE html>&lt;html ng-app>
+	&lt;head>&lt;title>{{pageTitle}}&lt;/title>&lt;/head>
+	&lt;body>
+		&lt;div ng-controller="menuController as menuCtrl">
+			&lt;h1>{{menuCtrl.pageTitle}}&lt;/h1>
+		&lt;/div>
+		&lt;script src="./app.js">
+		&lt;/body>
+	&lt;/html>
+</code></pre>
+				</section>
+
+				<section>
+					<h2>So How Do You Create YOUR OWN Directive?</h2>
+					<p>There are two types:</p>
+					<ul>
+						<li class="fragment">Element: <pre class="fragment">
+							<code>&lt;profile-section>&lt;/profile-section></code></pre></li>
+						<li class="fragment">Attribute: <pre class="fragment">
+							<code>&lt;input type="number" model="accountCtrl.percentGoal" percent-mask /></code></pre></li>
+				</section>
+
+				<section>
+					<h2>Element directives</h2>
+					<ul>
+						<li class="fragment">Placeholder for an HTML template</li>
+						<li class="fragment">Simplest example:
+							<pre class="fragment">
+								<code>&lt;ng-include="./profile-section-template.html">&lt;/ng-include></code>
+							</pre>
+						</li>
+						<li class="fragment">This element directive JUST brings in the template, with no extra logic</li>
+						<li class="fragment">Results in an extra AJAX request at runtime</li>
+						<li class="fragment">Avoid this by making your own directives!</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Attribute directives</h2>
+					<ul>
+						<li class="fragment">Add an attribute (logic) to another HTML tag</li>
+						<li class="fragment">Examples: ng-click, ng-model, etc.</li>
+						<li class="fragment">Do not include templates</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Both element and attribute directives...</h2>
+					<ul>
+						<li class="fragment">Can include view logic, can even include a controller</li>
+						<li class="fragment">Can have *isolate scope*</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Code!</h2>
+					<pre class="fragment">
+						<code contenteditable class ="javascript">angular.module([]).directive("profileSection", function() {
+	return {
+		restrict: 'E', //E for element, A for attribute!,
+		templateUrl: './profile-section.html',
+		scope: {},
+		transclude: true //Has access to everything in parent scope - avoid!
+	}
+};</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Code with template!</h2>
+					<pre class="fragment">
+						<code contenteditable class ="javascript">angular.module([]).directive("profileSection", function() {
+	return {
+		restrict: 'E',
+		template: '&lt;div class="profile-section">&lt;h2>Profile&lt;/h2>&lt;/div>',
+		scope: {}
+	}
+};
+</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Now let's add variables to scope!</h2>
+					<pre class="fragment">
+						<code contenteditable class ="javascript">angular.module([]).directive("profileSection", function() {
+	return {
+		restrict: 'E',
+		template: 'Name: {{name}}, Age: {{age}}',
+		scope: {
+			name: '=name', //or '='
+			age: '=age' //or '='
+		}
+	}
+};
+</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>And now we can use our directive!</h2>
+					<pre class="fragment"><code contenteditable>&lt;table>
+&lt;tbody>
+&lt;tr ng-repeat="user in users">
+&lt;profileSection name="user.name" age="user.age">&lt;/profile-section>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+					</code>
+				</pre>
+				</section>
+
+				<section>
+					<h2>More Examples at Angular Docs</h2>
+					<p><a href="https://docs.angularjs.org/guide/directive">https://docs.angularjs.org/guide/directive</a>
+				</section>
+
+				<section>
+					<h2>Your Turn!</h2>
+					<p>Write your own directive in your codepen</p>
+					<p>Ideas:</p>
+					<ul>
+						<li>A header</li>
+						<li>A footer</li>
+						<li>Menu</li>
+						<li>Link</li>
+						<li>Description (for a blog post, etc.)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>More with directives</h2>
+					<p class="fragment">You can add logic via a controller:</p>
+<pre class="fragment">
+	<code contenteditable class="javascript">angular.module([]).directive("profileSection", function() {
+		return {
+			restrict: 'E',
+			template: 'Name: {{name}}, Age: {{age}}',
+			controller: 'ProfileController' // Angular manages dependencies and will find this with just a string!
+			scope: {
+				name: '=name', //or '='
+				age: '=age' //or '='
+			}
+		}
+	};
+	</code>
+</pre>
+				</section>
+
+				<section>
+					<h2>More with directives</h2>
+					<p class="fragment">Or more commonly, with a link function (more on this next class):</p>
+<pre class="fragment">
+<code contenteditable class="javascript">angular.module([]).directive("", function() {
+	return {
+		restrict: 'A',
+		template: 'Name: {{name}}, Age: {{age}}',
+		scope: {
+			firstName: '='
+			lastName: '='
+		},
+		link: function(scope, element, attributes) {
+			scope.name = scope.firstName + ' ' + scope.lastName;
+		}
+	}
+};</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>'=', '@', '&amp;'</h2>
+					<p class="fragment">'=' is for two way binding</h2>
+					<p class="fragment">'&amp;' is for one way binding (usually functions)</p>
+					<p class="fragment">'@' is for text</h2>
+<pre class="fragment">
+	<code contenteditable class ="javascript">angular.module([]).directive("profileSection", function() {
+		return {
+			restrict: 'E',
+			template: 'Name: {{name}}, Age: {{age}}',
+			scope: {
+				name: '='
+				age: '@'
+			}
+		}
+	}; // &lt;profile-section name="user.name" age="20">&lt;/profile-section>
+	</code>
+</pre>
+				</section>
+
+				<section>
+					<h2>Tools for forms</h2>
+					<ul>
+						<li>ng-model: Use on inputs to keep track of updates</li>
+						<li>ng-submit: Runs when you submit a form</li>
+						<li>Don't just rely on ng-click - user can press enter to submit a form</li>
+						<li>Can review codepen for an example of this in practice</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Optional: Save data to a service</h2>
+					<ul>
+						<li>Services can be shared across different controllers</li>
+						<li>Can also load data from/send data to back end, store in local storage, etc.</li>
+						<li>More on this next class</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Adventure trip!</h2>
+					<ul>
+						<li>Choose your favorite destination for a group trip! <small>Decide how many people can go.</small></li>
+						<li>Create a model for the travelers <small>(Name, Age, Email, Photo, Has previously visited? Allergies? etc.)</small></li>
+						<li>Display who's going and # spots remaining</li>
+						<li>Create a traveler row directive with name, age, etc.</li>
+						<li>Add a form for people to sign up for the trip</li>
+						<li>Extra: Hide form when trip is full</li>
+						<li>Extra: Use two controllers and store data in a service</li>
 					</ul>
 				</section>
 
