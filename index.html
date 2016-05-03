@@ -697,6 +697,185 @@ angular.module([]).service("menuService", function() {
 				</section>
 
 				<section>
+					<h2>Day 3</h2>
+					<ul>
+						<li>Adventure trip!</li>
+						<li>Review Week 1</li>
+						<li>Services</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Day 1</h2>
+					<ul>
+						<li>Controllers, directives, filters</li>
+						<li>Data binding</li>
+						<li>MVC/MV*</li>
+						<li>Scope and $scope best practices</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Day 2</h2>
+					<ul>
+						<li>Create your own directives!</li>
+						<li>Forms</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>Codepen review!
+						<a href="http://codepen.io/arilaen/pen/oxPwQq">http://codepen.io/arilaen/pen/oxPwQq</a>
+					</p>
+				</section>
+
+				<section>
+					<h2>Services</h2>
+					<ul>
+						<li>Singletons - only one instance is created</li>
+						<li>Can use built-in services ($http, $cookies)</li>
+						<li>Can create your own - store or share data</li>
+						<li>Lazily created - only made when needed</li>
+					</ul>
+				</section>
+
+				<section>
+						<p>Making a service</p>
+						<pre class="fragment">
+							<code class ="javascript">require('angular');
+angular.module('app', []).service("menuService", function() {
+	this.pageTitle = "Angular Example Site";
+})
+.controller("menuController", ['$scope', 'menuService',
+	function($scope, menuService) {
+		$scope.pageTitle = "Angular Example Site";
+}]);
+							</code>
+						</pre>
+						<p>index.html</p>
+						<pre class="fragment">
+							<code>&lt;!DOCTYPE html>
+&lt;html ng-app>&lt;head>&lt;title>{{pageTitle}}&lt;/title>&lt;/head>
+&lt;body>
+	&lt;div ng-controller="menuController">
+		&lt;h1>{{pageTitle}}&lt;/h1>
+	&lt;/div>
+	&lt;script src="./app.js">
+	&lt;/body>
+&lt;/html></code>
+						</pre>
+				</section>
+
+				<section>
+					<h2>Built-in Services</h2>
+					<ul>
+						<li class="fragment">$http</li>
+						<li class="fragment">$cookies</li>
+						<li class="fragment">$localStorage</li>
+						<li class="fragment">$window + $document</li>
+						<li class="fragment">$log</li>
+						<li class="fragment">$state (external - comes with ui-router module)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>$http</h2>
+					<pre class="fragment">
+						<code contenteditable class ="javascript">require('angular');
+angular.module('app', []).service("todoService", ['$http',
+function($http) {
+	var service = this;
+	this.getTodos = $http.get('http://jsonplaceholder.typicode.com/todos');
+	this.todos = [];
+	function init() {
+		this.getTodos().then(function(data) {
+			service.todos = data;
+		});
+	}
+	init();
+}]);
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>$http</h2>
+					<pre class="fragment">
+						<code contenteditable class ="javascript">
+angular.module('app', [])
+.service("todoService", todoService)
+.controller("todoController", ['$menuService',
+function($menuService) {
+	this.todos = menuService.todos;
+}]);
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>What then?</h2>
+					<p class="fragment">Asynchronous vs. Synchronous Code</p>
+					<ul>
+						<li class="fragment">Most of your code is synchronous - runs sequentially</li>
+						<li class="fragment"><pre>
+							<code class ="javascript">var data = [{id: 0, name: 1}];</code></pre></li>
+						<li class="fragment"><pre>
+							<code class ="javascript">console.log(data.name);</code></pre></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>What then?</h2>
+					<p class="fragment">Asynchronous vs. Synchronous Code</p>
+					<p>Most of your code is synchronous - runs sequentially</p>
+					<pre class="fragment">
+						<code class ="javascript">var data = [{id: 0, name: 1}];</code></pre>
+					<pre class="fragment">
+						<code class ="javascript">console.log(data.name);</code></pre>
+				</section>
+
+				<section>
+					<h2>Asynchronous Code + Promises?</h2>
+					<p>For external calls, use promises and callbacks</p>
+					<pre>
+						<code class ="javascript">$http.get('/posts').then(function(result) {...})</code></pre>
+				</section>
+
+				<section>
+					<h2>$http</h2>
+					<pre class="fragment">
+						<code contenteditable class ="javascript">
+angular.module('app', [])
+.service("todoService", todoService)
+.controller("todoController", ['$menuService',
+function($menuService) {
+	this.todos = menuService.todos;
+	this.addTodo = menuService.addTodo;
+	this.updateTodo = menuService.updateTodo;
+	this.saveTodo = menuService.saveTodo;
+}]);
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Practice</h2>
+					<p>Let's put it all together and use services with a form, in codepen!</p>
+				</section>
+
+				<section>
+					<h2>More on $scope</h2>
+				</section>
+
+				<section>
+					<h2>$scope.$watch</h2>
+				</section>
+
+				<section>
+					<h2>$scope.$on</h2>
+				</section>
+
+				<section>
 					<h2>Resources</h2>
 					<ul>
 						<li><a href="https://docs.angularjs.org/api">Angular API Docs</a></li>
