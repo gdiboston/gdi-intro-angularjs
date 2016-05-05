@@ -56,7 +56,6 @@
 				<section>
 					<h2>Introductions</h2>
 					<p>Tell us about yourself.</p>
-Which of your web projects are you most proud of?
 					<ul>
 						<li>Who are you?</li>
 						<li>What do you hope to get out of the class?</li>
@@ -66,11 +65,8 @@ Which of your web projects are you most proud of?
 
 				<section>
 					<h2>You should have:</h2>
-					<ul>
-							<li>A <a href="codepen.io">Codepen account</a></li>
-							<li>A text editor (<a href="atom.io">Atom</a>, <a href="sublimetext.com">Sublime Text</a>)</li>
-							<li>Node + NPM (NVM recommended)</li>
-					</ul>
+					<p>A <a href="codepen.io">Codepen account</a>.</p>
+					<p>For coding at home, a text editor (<a href="atom.io">Atom</a>, <a href="sublimetext.com">Sublime Text</a>)</p>
 				</section>
 
 				<section>
@@ -118,14 +114,9 @@ Which of your web projects are you most proud of?
 					<p>index.html</p>
 					<xml class="fragment">
 						<pre>
-<code>&lt;!DOCTYPE html>&lt;html ng-app>
-&lt;head>&lt;title>{{pageTitle}}&lt;/title>
-&lt;script src="./angular.min.js">
-&lt;script src="./app.js">&lt;/head>
-&lt;body>
+<code>&lt;body ng-app="app">
 &lt;p>2 + 2 = {{2 + 2}}&lt;/p>
-&lt;/body>
-&lt;/html></code>
+&lt;/body></code>
 						</pre>
 					</xml>
 				</section>
@@ -157,7 +148,7 @@ Which of your web projects are you most proud of?
 				<section>
 					  <h2>Directives</h2>
 						<p>View components and logic</p>
-	           <pre class="fragment"><code contenteditable class ="javascript">angular.module([]).directive('myTooltip', myTooltipFn);</code></pre>
+	           <pre class="fragment"><code contenteditable class ="javascript">angular.module('app', []).directive('myTooltip', myTooltipFn);</code></pre>
 						 <pre class="fragment"><code>&lt;my-tooltip>&lt;/my-tooltip></code></pre>
 						 <pre class="fragment"><code>&lt;div my-tooltip="options">&lt;/div></code><pre>
 				</section>
@@ -165,16 +156,11 @@ Which of your web projects are you most proud of?
 				<section>
 				  <p>index.html</p>
 					<xml class="fragment">
-					  <pre>
-<code>&lt;!DOCTYPE html>&lt;html ng-app>
-&lt;head>&lt;title>{{pageTitle}}&lt;/title>
-&lt;script src="./angular.min.js">
-&lt;script src="./app.js">&lt;/head>
-&lt;body>
+						<pre>
+<code>&lt;body ng-app="app">
 &lt;h1>{{pageTitle}}&lt;/h1>
-&lt;/body>
-&lt;/html></code>
-            </pre>
+&lt;/body></code>
+						</pre>
 					</xml>
 				</section>
 
@@ -255,8 +241,7 @@ Name: {{name}}</code>
 				<section>
 						<p>app.js</p>
 					  <pre class="fragment">
-              <code contenteditable class ="javascript">require('angular');
-angular.module([]) .controller("menuController", ['$scope',
+              <code contenteditable class ="javascript">angular.module('app', []) .controller("menuController", ['$scope',
 function($scope) { $scope.pageTitle =
 "Angular Example Site"; }]);
               </code>
@@ -287,8 +272,7 @@ function($scope) { $scope.pageTitle =
 					<h2>'this' and 'as'</h2>
 							<p>app.js</p>
 							<pre class="fragment">
-								<code contenteditable class ="javascript">require('angular');
-	angular.module([]) .controller("menuController", ['$scope',
+								<code contenteditable class ="javascript">angular.module('app', []) .controller("menuController", ['$scope',
 	function($scope) { this.pageTitle =
 	"Angular Example Site"; }]);
 								</code>
@@ -352,8 +336,7 @@ accountCtrl.balanceOverZero">
 				<section>
 						<p>app.js</p>
 					  <pre class="fragment">
-              <code class ="javascript">require('angular');
-angular.module([]).service("menuService", function() {
+              <code class ="javascript">angular.module('app', []).service("menuService", function() {
 	this.pageTitle = "Angular Example Site";
 })
 .controller("menuController", ['$scope', 'menuService',
@@ -437,7 +420,7 @@ angular.module([]).service("menuService", function() {
 				<section>
 					  <h2>Recap: Directives</h2>
 						<p class="fragment">View components and logic</p>
-	           <pre class="fragment"><code contenteditable class ="javascript">angular.module([]).directive('myTooltip', myTooltipFn);</code></pre>
+	           <pre class="fragment"><code contenteditable class ="javascript">angular.module('app', []).directive('myTooltip', myTooltipFn);</code></pre>
 						 <p class="fragment">Element style</p>
 						 <pre class="fragment"><code>&lt;my-tooltip>&lt;/my-tooltip></code></pre>
 						 <p class="fragment">Attribute style</p>
@@ -467,8 +450,7 @@ angular.module([]).service("menuService", function() {
 					<h2>Recap: Controllers</h2>
 							<p class="fragment">app.js</p>
 							<pre class="fragment">
-								<code contenteditable class ="javascript">require('angular');
-	angular.module([]) .controller("menuController", ['$scope',
+								<code contenteditable class ="javascript">angular.module('app', []) .controller("menuController", ['$scope',
 	function($scope) { this.pageTitle =
 	"Angular Example Site"; }]);
 								</code>
@@ -532,7 +514,7 @@ angular.module([]).service("menuService", function() {
 				<section>
 					<h2>Code!</h2>
 					<pre class="fragment">
-						<code contenteditable class ="javascript">angular.module([]).directive("profileSection", function() {
+						<code contenteditable class ="javascript">angular.module('app', []).directive("profileSection", function() {
 	return {
 		restrict: 'E', //E for element, A for attribute!,
 		templateUrl: './profile-section.html',
@@ -546,7 +528,7 @@ angular.module([]).service("menuService", function() {
 				<section>
 					<h2>Code with template!</h2>
 					<pre class="fragment">
-						<code contenteditable class ="javascript">angular.module([]).directive("profileSection", function() {
+						<code contenteditable class ="javascript">angular.module('app', []).directive("profileSection", function() {
 	return {
 		restrict: 'E',
 		template: '&lt;div class="profile-section">&lt;h2>Profile&lt;/h2>&lt;/div>',
@@ -560,7 +542,7 @@ angular.module([]).service("menuService", function() {
 				<section>
 					<h2>Now let's add variables to scope!</h2>
 					<pre class="fragment">
-						<code contenteditable class ="javascript">angular.module([]).directive("profileSection", function() {
+						<code contenteditable class ="javascript">angular.module('app', []).directive("profileSection", function() {
 	return {
 		restrict: 'E',
 		template: 'Name: {{name}}, Age: {{age}}',
@@ -609,7 +591,7 @@ angular.module([]).service("menuService", function() {
 					<h2>More with directives</h2>
 					<p class="fragment">You can add logic via a controller:</p>
 <pre class="fragment">
-	<code contenteditable class="javascript">angular.module([]).directive("profileSection", function() {
+	<code contenteditable class="javascript">angular.module('app', []).directive("profileSection", function() {
 		return {
 			restrict: 'E',
 			template: 'Name: {{name}}, Age: {{age}}',
@@ -628,7 +610,7 @@ angular.module([]).service("menuService", function() {
 					<h2>More with directives</h2>
 					<p class="fragment">Or more commonly, with a link function (more on this next class):</p>
 <pre class="fragment">
-<code contenteditable class="javascript">angular.module([]).directive("", function() {
+<code contenteditable class="javascript">angular.module('app', []).directive("", function() {
 	return {
 		restrict: 'A',
 		template: 'Name: {{name}}, Age: {{age}}',
@@ -650,7 +632,7 @@ angular.module([]).service("menuService", function() {
 					<p class="fragment">'&amp;' is for one way binding (usually functions)</p>
 					<p class="fragment">'@' is for text</h2>
 <pre class="fragment">
-	<code contenteditable class ="javascript">angular.module([]).directive("profileSection", function() {
+	<code contenteditable class ="javascript">angular.module('app', []).directive("profileSection", function() {
 		return {
 			restrict: 'E',
 			template: 'Name: {{name}}, Age: {{age}}',
@@ -742,7 +724,7 @@ angular.module([]).service("menuService", function() {
 				<section>
 						<p>Making a service</p>
 						<pre class="fragment">
-							<code class ="javascript">require('angular');
+							<code class ="javascript">
 angular.module('app', []).service("menuService", function() {
 	this.pageTitle = "Angular Example Site";
 })
@@ -781,7 +763,7 @@ angular.module('app', []).service("menuService", function() {
 				<section>
 					<h2>$http</h2>
 					<pre class="fragment">
-						<code contenteditable class ="javascript">require('angular');
+						<code contenteditable class ="javascript">
 angular.module('app', []).service("todoService", ['$http',
 function($http) {
 	var service = this;
@@ -815,13 +797,9 @@ function($menuService) {
 				<section>
 					<h2>What then?</h2>
 					<p class="fragment">Asynchronous vs. Synchronous Code</p>
-					<ul>
-						<li class="fragment">Most of your code is synchronous - runs sequentially</li>
-						<li class="fragment"><pre>
-							<code class ="javascript">var data = [{id: 0, name: 1}];</code></pre></li>
-						<li class="fragment"><pre>
-							<code class ="javascript">console.log(data.name);</code></pre></li>
-					</ul>
+					<p class="fragment">Most of your code is synchronous - runs sequentially</p>
+					<pre class="fragment"><code class ="javascript">var data = [{id: 0, name: 1}];</code></pre>
+					<pre class="fragment"><code class ="javascript">console.log(data.name);</code></pre>
 				</section>
 
 				<section>
@@ -844,8 +822,7 @@ function($menuService) {
 				<section>
 					<h2>$http</h2>
 					<pre class="fragment">
-						<code contenteditable class ="javascript">
-angular.module('app', [])
+						<code contenteditable class ="javascript">angular.module('app', [])
 .service("todoService", todoService)
 .controller("todoController", ['$menuService',
 function($menuService) {
@@ -861,18 +838,74 @@ function($menuService) {
 				<section>
 					<h2>Practice</h2>
 					<p>Let's put it all together and use services with a form, in codepen!</p>
+					<p>
+						<a href="http://codepen.io/arilaen/pen/oxPwQq">http://codepen.io/arilaen/pen/oxPwQq</a>
+					</p>
 				</section>
 
 				<section>
-					<h2>More on $scope</h2>
+					<h2>Day 4</h2>
+					<ul>
+						<li>Components</li>
+						<li>$scope.$watch</li>
+						<li>Review + Trip planning site!</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Components</h2>
+					<ul>
+						<li class="fragment">Introduced in Angular 1.5; big part of Angular 2</li>
+						<li class="fragment">Type of element directive</li>
+						<li class="fragment">In the future, Angular will be all components - no controllers, just components and attribute directives</li>
+						<li class="fragment">MVComponent?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Components</h2>
+					<pre class="fragment">
+						<code contenteditable class ="javascript">angular.module('app')
+.component('heroDetail', {
+  templateUrl: 'heroDetail.html',
+  controller: HeroDetailController,
+  bindings: {
+    hero: '='
+  }
+});
+						</code>
+					</pre>
 				</section>
 
 				<section>
 					<h2>$scope.$watch</h2>
+					<p class="fragment">Allows us to define our own two-way data binding!</p>
+					<pre class="fragment">
+						<code contenteditable class ="javascript">angular.module('app', [])
+.controller("todoController", ['$scope',
+function($scope) {
+	$scope.hours = 10;
+	$scope.cost = $scope.hours * 3;
+	$scope.$watch(function(newValue, oldValue) {
+		$scope.cost = $scope.hours * 3;
+	});
+}]);
+						</code>
+					</pre>
 				</section>
 
 				<section>
-					<h2>$scope.$on</h2>
+					<p>Practice! Time to finish your trip apps! You can follow along with me here:
+					<a href="http://codepen.io/arilaen/pen/oxPwQq">http://codepen.io/arilaen/pen/oxPwQq</a></p>
+				</section>
+
+				<section>
+					<h2>Next steps</h2>
+					<ul>
+						<li><a href="https://angular.io/docs/ts/latest/quickstart.html">Learn about Angular 2</a></li>
+						<li>Try out ui-router and ui-bootstrap</li>
+						<li>Create your own Angular app and deploy it on heroku with node and npm</li>
+					</ul>
 				</section>
 
 				<section>
